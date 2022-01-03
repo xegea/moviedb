@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dummy page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash/lodash.min.js"></script>
+    <script src="https://unpkg.com/vue-infinite-scroll/vue-infinite-scroll.js"></script>
+    
+  </head>
+  <body>
+    <header class="header">
+      Some text...
+    </header>
+    <section class="section">
+      <div id="app">
+        <input type="text" placeholder="search movies" v-model="search">
+        <ul>
+          <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
+            <li v-for="content in contentList" :key="content.Title" style="margin-bottom: 2rem;" data-aos="slide-up" data-aos-offset="100" data-aos-easing="ease-out-back">
+              <div class="card">
+                <header class="card-header">
+                  <p class="card-header-title">
+                    {{content.Title}}
+                  </p>
+                </header>
+                <div class="card-content">
+                  <div class="content">
+                    <p>{{content.Description}}</p>
+                  </div>
+                  <div class="content">
+                    <a target="_blank" v-bind:href="content.Url"><img width="450px" v-bind:src="content.Image" /></a>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </section>
+    <script src="./src/index.js"></script>
+  </body>
+</html>
+
+    <!-- <video width="320" height="240" controls>
+        <source src="https://occ-0-3380-358.1.nflxso.net/so/soa1/407/386163407.mp4?v=1" type="video/mp4">
+    Your browser does not support the video tag.
+    </video> -->
