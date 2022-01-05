@@ -1,8 +1,10 @@
 package main
 
 import (
+	"embed"
 	"encoding/json"
 	"fmt"
+	"io/fs"
 	"log"
 	"net/http"
 	"os"
@@ -35,7 +37,12 @@ type Trailer struct {
 	ThumbnailUrl string `json:",omitempty"`
 }
 
-var client *redisearch.Client
+var (
+	client *redisearch.Client
+
+	//go:embed static/*
+	static embed.FS
+)
 
 func main() {
 
@@ -57,7 +64,19 @@ func main() {
 
 func handleRequests() {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/content/", getContent)
+
+	fsys, err := fs.Sub(static, "static")
+	if err != nil {
+		panic(err)
+	}
+
+	// Serve static files
+	fs := http.FileServer(http.FS(fsys))
+	router.Handle("/", fs)
+	router.Handle("/js/index.js", fs)
+	router.Handle("/css/style.css", fs)
+
+	router.HandleFunc("/search/", searchHandler)
 
 	port := ":" + os.Getenv("PORT")
 	if os.Getenv("PORT") == "" {
@@ -69,7 +88,7 @@ func handleRequests() {
 	log.Fatal(http.ListenAndServe(port, handlers.CORS(cors)(router)))
 }
 
-func getContent(w http.ResponseWriter, r *http.Request) {
+func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 	query := r.URL.Query().Get("q")
 	var page int
