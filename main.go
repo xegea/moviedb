@@ -40,6 +40,7 @@ type Trailer struct {
 var (
 	client_es *redisearch.Client
 	client_us *redisearch.Client
+	client_de *redisearch.Client
 
 	//go:embed static/*
 	static embed.FS
@@ -60,6 +61,7 @@ func main() {
 	}}
 	client_es = redisearch.NewClientFromPool(pool, "idx:title:es")
 	client_us = redisearch.NewClientFromPool(pool, "idx:title:us")
+	client_de = redisearch.NewClientFromPool(pool, "idx:title:de")
 
 	handleRequests()
 }
@@ -140,6 +142,10 @@ func resolveClient(country string) *redisearch.Client {
 	case "us":
 		{
 			client = client_us
+		}
+	case "de":
+		{
+			client = client_de
 		}
 	default:
 		{
