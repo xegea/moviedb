@@ -16,29 +16,30 @@ import (
 	"github.com/joho/godotenv"
 )
 
-type Content struct {
-	Title         string    `json:",omitempty"`
-	Url           string    `json:",omitempty"`
-	ContentRating string    `json:",omitempty"`
-	Type          string    `json:",omitempty"`
-	Description   string    `json:",omitempty"`
-	Genre         string    `json:",omitempty"`
-	Image         string    `json:",omitempty"`
-	DateCreated   int64     `json:",omitempty"`
-	Director      []string  `json:",omitempty"`
-	Actors        []string  `json:",omitempty"`
-	Trailer       []Trailer `json:",omitempty"`
+type Movie struct {
+	Title         map[string]string `json:",omitempty"`
+	Url           string            `json:",omitempty"`
+	ContentRating string            `json:",omitempty"`
+	Type          string            `json:",omitempty"`
+	Description   map[string]string `json:",omitempty"`
+	Genre         string            `json:",omitempty"`
+	Image         string            `json:",omitempty"`
+	DateCreated   int64             `json:",omitempty"`
+	Director      []string          `json:",omitempty"`
+	Actors        []string          `json:",omitempty"`
+	Trailer       []Trailer         `json:",omitempty"`
 }
 
 type Trailer struct {
-	Name         string `json:",omitempty"`
-	Description  string `json:",omitempty"`
-	Url          string `json:",omitempty"`
-	ThumbnailUrl string `json:",omitempty"`
+	Name         map[string]string `json:",omitempty"`
+	Description  map[string]string `json:",omitempty"`
+	Url          string            `json:",omitempty"`
+	ThumbnailUrl string            `json:",omitempty"`
 }
 
 var (
-	client *redisearch.Client
+	client_es *redisearch.Client
+	client_us *redisearch.Client
 
 	//go:embed static/*
 	static embed.FS
@@ -57,7 +58,8 @@ func main() {
 	pool := &redis.Pool{Dial: func() (redis.Conn, error) {
 		return redis.Dial("tcp", host, redis.DialPassword(password))
 	}}
-	client = redisearch.NewClientFromPool(pool, "idx:title")
+	client_es = redisearch.NewClientFromPool(pool, "idx:title:es")
+	client_us = redisearch.NewClientFromPool(pool, "idx:title:us")
 
 	handleRequests()
 }
@@ -93,6 +95,9 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query().Get("q")
 	var page int
 	fmt.Sscan(r.URL.Query().Get("p"), &page)
+	country := r.URL.Query().Get("c")
+
+	client := resolveClient(country)
 
 	docs, total, err := client.Search(redisearch.NewQuery(fmt.Sprint("@title:", query, "*")).
 		// SetReturnFields("title", "description", "type"). // if SetReturnFields
@@ -101,7 +106,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	var contentList []Content
+	var movieList []Movie
 
 	for _, v := range docs {
 
@@ -113,14 +118,33 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 			log.Fatal(err)
 		}
 
-		var content Content
+		var content Movie
 		if err := json.Unmarshal([]byte(jsonbody), &content); err != nil {
 			log.Fatalf("Failed to Unmarshall %s", jsonbody)
 		}
-		contentList = append(contentList, content)
+		movieList = append(movieList, content)
 	}
 
-	json.NewEncoder(w).Encode(contentList)
+	json.NewEncoder(w).Encode(movieList)
 
 	fmt.Printf("total: %d\n", total)
+}
+
+func resolveClient(country string) *redisearch.Client {
+	var client *redisearch.Client
+	switch country {
+	case "es":
+		{
+			client = client_es
+		}
+	case "us":
+		{
+			client = client_us
+		}
+	default:
+		{
+			client = client_es
+		}
+	}
+	return client
 }
