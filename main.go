@@ -16,27 +16,6 @@ import (
 	"github.com/moviedb/api/pkg/server"
 )
 
-type Movie struct {
-	Title         map[string]string `json:",omitempty"`
-	Url           string            `json:",omitempty"`
-	ContentRating string            `json:",omitempty"`
-	Type          string            `json:",omitempty"`
-	Description   map[string]string `json:",omitempty"`
-	Genre         string            `json:",omitempty"`
-	Image         string            `json:",omitempty"`
-	ReleaseDate   int64             `json:",omitempty"`
-	Director      []string          `json:",omitempty"`
-	Actors        []string          `json:",omitempty"`
-	Trailer       []Trailer         `json:",omitempty"`
-}
-
-type Trailer struct {
-	Name         map[string]string `json:",omitempty"`
-	Description  map[string]string `json:",omitempty"`
-	Url          string            `json:",omitempty"`
-	ThumbnailUrl string            `json:",omitempty"`
-}
-
 var (
 	//go:embed static/*
 	static embed.FS
