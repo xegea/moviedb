@@ -40,7 +40,7 @@ func SearchHandler(srv server.Server) http.HandlerFunc {
 		country := r.URL.Query().Get("c")
 
 		url := srv.Config.ApiUrl
-		b, err := httpGet(fmt.Sprintf("%s/search/?query=%s&country=%s&page=%d", url, query, country, page))
+		b, err := httpGet(fmt.Sprintf("%s/search/?query=%s&country=%s&page=%d", url, query, country, page), srv.Config.ApiKey)
 		if err != nil {
 			log.Printf("Failed to http get %s - %v\n", fmt.Sprintf("%s/search/?query=%s&country=%s&page=%d", url, query, country, page), err)
 			srv.JSON(w, http.StatusInternalServerError, "failed to http get")
@@ -58,7 +58,7 @@ func SearchHandler(srv server.Server) http.HandlerFunc {
 	}
 }
 
-func httpGet(url string) ([]byte, error) {
+func httpGet(url string, apiKey string) ([]byte, error) {
 
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
@@ -68,7 +68,7 @@ func httpGet(url string) ([]byte, error) {
 
 	req.Header = http.Header{
 		"Content-Type": []string{"application/json"},
-		"ApiKey":       []string{"178fb68d-3500-4b1d-96d7-6c0bf549b045"},
+		"ApiKey":       []string{apiKey},
 	}
 
 	resp, err := client.Do(req)
