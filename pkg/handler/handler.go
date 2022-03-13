@@ -11,24 +11,25 @@ import (
 )
 
 type Movie struct {
-	Title         map[string]string `json:",omitempty"`
-	Url           string            `json:",omitempty"`
-	ContentRating string            `json:",omitempty"`
-	Type          string            `json:",omitempty"`
-	Description   map[string]string `json:",omitempty"`
-	Genre         string            `json:",omitempty"`
-	Image         string            `json:",omitempty"`
-	ReleaseDate   int64             `json:",omitempty"`
-	Director      []string          `json:",omitempty"`
-	Actors        []string          `json:",omitempty"`
-	Trailer       []Trailer         `json:",omitempty"`
+	Title         string    `json:",omitempty"`
+	Url           string    `json:",omitempty"`
+	ContentRating string    `json:",omitempty"`
+	Type          string    `json:",omitempty"`
+	Description   string    `json:",omitempty"`
+	Genre         string    `json:",omitempty"`
+	Image         string    `json:",omitempty"`
+	ReleaseDate   int64     `json:",omitempty"`
+	Director      []string  `json:",omitempty"`
+	Actors        []string  `json:",omitempty"`
+	Trailer       []Trailer `json:",omitempty"`
+	Updated       int64     `json:",omitempty"`
 }
 
 type Trailer struct {
-	Name         map[string]string `json:",omitempty"`
-	Description  map[string]string `json:",omitempty"`
-	Url          string            `json:",omitempty"`
-	ThumbnailUrl string            `json:",omitempty"`
+	Name         string `json:",omitempty"`
+	Description  string `json:",omitempty"`
+	Url          string `json:",omitempty"`
+	ThumbnailUrl string `json:",omitempty"`
 }
 
 func SearchHandler(srv server.Server) http.HandlerFunc {
@@ -37,12 +38,12 @@ func SearchHandler(srv server.Server) http.HandlerFunc {
 		var page int
 		fmt.Sscan(r.URL.Query().Get("p"), &page)
 		query := r.URL.Query().Get("q")
-		country := r.URL.Query().Get("c")
+		culture := r.URL.Query().Get("c")
 
 		url := srv.Config.ApiUrl
-		b, err := httpGet(fmt.Sprintf("%s/search/?query=%s&country=%s&page=%d", url, query, country, page), srv.Config.ApiKey)
+		b, err := httpGet(fmt.Sprintf("%s/search/?query=%s&culture=%s&page=%d", url, query, culture, page), srv.Config.ApiKey)
 		if err != nil {
-			log.Printf("Failed to http get %s - %v\n", fmt.Sprintf("%s/search/?query=%s&country=%s&page=%d", url, query, country, page), err)
+			log.Printf("Failed to http get %s - %v\n", fmt.Sprintf("%s/search/?query=%s&country=%s&page=%d", url, query, culture, page), err)
 			srv.JSON(w, http.StatusInternalServerError, "failed to http get")
 			return
 		}
