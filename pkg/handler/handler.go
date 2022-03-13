@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 
 	"github.com/moviedb/api/pkg/server"
 )
@@ -40,10 +41,10 @@ func SearchHandler(srv server.Server) http.HandlerFunc {
 		query := r.URL.Query().Get("q")
 		culture := r.URL.Query().Get("c")
 
-		url := srv.Config.ApiUrl
-		b, err := httpGet(fmt.Sprintf("%s/search/?query=%s&culture=%s&page=%d", url, query, culture, page), srv.Config.ApiKey)
+		apiUrl := srv.Config.ApiUrl
+		b, err := httpGet(fmt.Sprintf("%s/search/?query=%s&culture=%s&page=%d", apiUrl, url.QueryEscape(query), culture, page), srv.Config.ApiKey)
 		if err != nil {
-			log.Printf("Failed to http get %s - %v\n", fmt.Sprintf("%s/search/?query=%s&country=%s&page=%d", url, query, culture, page), err)
+			log.Printf("Failed to http get %s - %v\n", fmt.Sprintf("%s/search/?query=%s&country=%s&page=%d", apiUrl, url.QueryEscape(query), culture, page), err)
 			srv.JSON(w, http.StatusInternalServerError, "failed to http get")
 			return
 		}
