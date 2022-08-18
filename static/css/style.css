@@ -22,7 +22,8 @@ input[type=text] {
 
 .header {
   height: 60vh;
-  background-image: url(https://occ-0-3380-358.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABfXcIqTBOGm5dY0aAvM_ZyUR6SMwIEIJ2sreX_dyiNQQCMZavTrkTPXQ5B0FCRJerX8tKne3xh2Z8zNXmBMX5oGBArQ3.jpg?r=e8b);
+  background-image: url(https://occ-0-360-358.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABWthVFrKjoOL7rOdJ8W-QVTkxhVBzLf1AlcmtN9phZ3jBCVKIRvL80J2JG2FoLML9lvPKueaRoKdO_b2wquEA3DlENUU.jpg?r=515);
+  /*background-image: url(https://occ-0-3380-358.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABfXcIqTBOGm5dY0aAvM_ZyUR6SMwIEIJ2sreX_dyiNQQCMZavTrkTPXQ5B0FCRJerX8tKne3xh2Z8zNXmBMX5oGBArQ3.jpg?r=e8b);/*
   background-size: cover;
 }
 
