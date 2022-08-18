@@ -13,14 +13,16 @@ body {
 }
 
 input[type=text] {
-  padding: 12px 20px;
+  padding: 10px 10px;
   margin: 8px 0;
+  border: 3px solid grey;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
 .header {
-  height: 40vh;
-  /*background-image: url(https://occ-0-3380-358.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABfXcIqTBOGm5dY0aAvM_ZyUR6SMwIEIJ2sreX_dyiNQQCMZavTrkTPXQ5B0FCRJerX8tKne3xh2Z8zNXmBMX5oGBArQ3.jpg?r=e8b);*/
+  height: 60vh;
+  background-image: url(https://occ-0-3380-358.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABfXcIqTBOGm5dY0aAvM_ZyUR6SMwIEIJ2sreX_dyiNQQCMZavTrkTPXQ5B0FCRJerX8tKne3xh2Z8zNXmBMX5oGBArQ3.jpg?r=e8b);
   background-size: cover;
 }
 
