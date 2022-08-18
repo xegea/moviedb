@@ -29,7 +29,7 @@
     </header>
     <section class="section">
       <div id="app">
-        <input type="text" placeholder="search movies" v-model="search">
+        <input type="text" placeholder="Search movies..." v-model="search">
         <ul>
           <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
             <li v-for="content in contentList" :key="content.Title" style="margin-bottom: 2rem;" data-aos="slide-up" data-aos-offset="100" data-aos-easing="ease-out-back">
