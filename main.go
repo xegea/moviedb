@@ -46,6 +46,7 @@ func main() {
 	// Serve static files
 	fs := http.FileServer(http.FS(fsys))
 	router.Handle("/", fs)
+	router.Handle("/img/favicon.png", fs)
 	router.Handle("/js/index.js", fs)
 	router.Handle("/css/style.css", fs)
 
