@@ -26,35 +26,42 @@
     </script>
   </head>
   <body>
-    <header class="header">
-      Movies and TV Shows Searcher
-    </header>
-    <section class="section">
-      <div id="app">
-        <input type="text" placeholder="Search movies..." v-model="search">
-        <ul>
-          <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
-            <li v-for="content in contentList" :key="content.Title" style="margin-bottom: 2rem;" data-aos="slide-up" data-aos-offset="100" data-aos-easing="ease-out-back">
-              <div class="card">
-                <header class="card-header">
-                  <p class="card-header-title">
-                    {{content.Title}}
-                  </p>
-                </header>
-                <div class="card-content">
-                  <div class="content">
-                    <p>{{content.Description}}</p>
-                  </div>
-                  <div class="content">
-                    <a target="_blank" v-bind:href="content.Url"><img width="450px" v-bind:src="content.Image" /></a>
-                  </div>
+    <div id="app">
+      <header class="header">
+        <div class="logo-box">
+          <img src="img/logo.png" alt="Logo" class="logo">
+        </div>
+
+        <div class="text-box">
+          <h1 class="heading-primary">
+            <span class="heading-primary-main">Movie&nbsp;DB</span>
+            <span class="heading-primary-sub">Movies and TV Shows Searcher</span>
+          </h1>
+          <input type="text" class="search__input" placeholder="Search movies" v-model="search">
+        </div>
+      </header>
+      <section class="section">
+        <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
+          <div v-for="content in contentList" :key="content.Title" style="margin-bottom: 2rem;" data-aos="slide-up" data-aos-offset="100" data-aos-easing="ease-out-back">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  {{content.Title}}
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <p>{{content.Description}}</p>
+                </div>
+                <div class="content">
+                  <a target="_blank" v-bind:href="content.Url"><img width="450px" v-bind:src="content.Image" /></a>
                 </div>
               </div>
-            </li>
+            </div>
           </div>
-        </ul>
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
     <script src="js/index.js"></script>
   </body>
 </html>

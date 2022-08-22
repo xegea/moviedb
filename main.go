@@ -47,6 +47,7 @@ func main() {
 	fs := http.FileServer(http.FS(fsys))
 	router.Handle("/", fs)
 	router.Handle("/img/favicon.png", fs)
+	router.Handle("/img/logo.png", fs)
 	router.Handle("/js/index.js", fs)
 	router.Handle("/css/style.css", fs)
 
