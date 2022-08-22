@@ -1,0 +1,11 @@
+.search-input {
+    font-size: 1.5rem;
+    border-radius: 10rem;
+    padding: 1.5rem 1.5rem;  
+    width: 90%;
+}
+
+.input-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+}
