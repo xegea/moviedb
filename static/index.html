@@ -40,6 +40,82 @@
           <input type="text" class="search-input input-animated" placeholder="Search Movie / TV Shows (type Title, Actors or Director)" v-model="search">
         </div>
       </header>
+
+      <main>
+        <section class="section-grid">
+          
+        </section>
+      </main>
+
+      <!-- <section class="grid-test">
+        <div class="row">
+          <div class="col-1-of-2">
+            Col 1 of 2
+          </div>
+          <div class="col-1-of-2">
+            Col 1 of 2
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-1-of-3">
+            Col 1 of 3
+          </div>
+          <div class="col-1-of-3">
+            Col 1 of 3
+          </div>
+          <div class="col-1-of-3">
+            Col 1 of 3
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-1-of-3">
+            Col 1 of 3
+          </div>
+          <div class="col-2-of-3">
+            Col 2 of 3
+          </div>          
+        </div>
+
+        <div class="row">
+          <div class="col-1-of-4">
+            Col 1 of 4
+          </div>
+          <div class="col-1-of-4">
+            Col 1 of 4
+          </div>
+          <div class="col-1-of-4">
+            Col 1 of 4
+          </div>
+          <div class="col-1-of-4">
+            Col 1 of 4
+          </div>       
+        </div>
+
+        <div class="row">
+          <div class="col-1-of-4">
+            Col 1 of 4
+          </div>
+          <div class="col-1-of-4">
+            Col 1 of 4
+          </div>
+          <div class="col-2-of-4">
+            Col 2 of 4
+          </div>          
+        </div>
+
+        <div class="row">
+          <div class="col-1-of-4">
+            Col 1 of 4
+          </div>
+          <div class="col-3-of-4">
+            Col 3 of 4
+          </div>           
+        </div>
+      </section> -->
+
+
       <section class="section">
         <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
           <div v-for="content in contentList" :key="content.Title" style="margin-bottom: 2rem;" data-aos="slide-up" data-aos-offset="100" data-aos-easing="ease-out-back">
