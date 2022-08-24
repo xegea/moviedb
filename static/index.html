@@ -43,6 +43,55 @@
 
       <main>
         <section class="section-grid">
+          <!-- <div class="row">
+            <div v-for="(content, index) in contentList" :key="content.Title" class="col-1-of-5">
+              {{index}}
+            </div>
+            <div v-for="(content, index) in contentList" :key="content.Title" class="col-1-of-5">
+              <span v-if="index >= 5">{{index}}</span>
+            </div>
+          </div> -->
+          <div class="row">
+            <div v-for="(content, index) in contentList.slice(0,5)" :key="content.Title" class="col-1-of-5">
+              <div class="card">
+                <header class="card-header">
+                  <p class="card-header-title">
+                    {{content.Title}}
+                  </p>
+                </header>
+                <div class="card-content">
+                  <div class="content">
+                    <p>{{content.Description}}</p>
+                  </div>
+                  <div class="content">
+                    <a target="_blank" v-bind:href="content.Url"><img width="450px" v-bind:src="content.Image" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div v-for="(content, index) in contentList.slice(5,10)" :key="content.Title" class="col-1-of-5">
+              <div class="card">
+                <header class="card-header">
+                  <p class="card-header-title">
+                    {{content.Title}}
+                  </p>
+                </header>
+                <div class="card-content">
+                  <div class="content">
+                    <p>{{content.Description}}</p>
+                  </div>
+                  <div class="content">
+                    <a target="_blank" v-bind:href="content.Url"><img width="450px" v-bind:src="content.Image" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-features">
+            
           
         </section>
       </main>
@@ -116,7 +165,7 @@
       </section> -->
 
 
-      <section class="section">
+      <!-- <section class="section">
         <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
           <div v-for="content in contentList" :key="content.Title" style="margin-bottom: 2rem;" data-aos="slide-up" data-aos-offset="100" data-aos-easing="ease-out-back">
             <div class="card">
@@ -136,7 +185,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
     </div>
     <script src="js/index.js"></script>
   </body>
