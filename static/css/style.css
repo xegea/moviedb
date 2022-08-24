@@ -77,7 +77,6 @@ body {
 
 .row {
   max-width: 114rem;
-  background-color: pink;
   margin: 0 auto; }
   .row:not(:last-child) {
     margin-bottom: 4rem; }

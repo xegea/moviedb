@@ -58,13 +58,13 @@
                   <p class="card-header-title">
                     {{content.Title}}
                   </p>
+                  <div class="content">
+                    <a target="_blank" v-bind:href="content.Url"><img width="200px" v-bind:src="content.Image" /></a>
+                  </div>
                 </header>
                 <div class="card-content">
                   <div class="content">
                     <p>{{content.Description}}</p>
-                  </div>
-                  <div class="content">
-                    <a target="_blank" v-bind:href="content.Url"><img width="450px" v-bind:src="content.Image" /></a>
                   </div>
                 </div>
               </div>
@@ -75,16 +75,16 @@
               <div class="card">
                 <header class="card-header">
                   <p class="card-header-title">
-                    {{content.Title}}
+                    {{content.Title}}                    
                   </p>
+                  <div class="content">
+                    <a target="_blank" v-bind:href="content.Url"><img width="200px" v-bind:src="content.Image" /></a>
+                  </div>
                 </header>
                 <div class="card-content">
                   <div class="content">
                     <p>{{content.Description}}</p>
-                  </div>
-                  <div class="content">
-                    <a target="_blank" v-bind:href="content.Url"><img width="450px" v-bind:src="content.Image" /></a>
-                  </div>
+                  </div>                  
                 </div>
               </div>
             </div>
