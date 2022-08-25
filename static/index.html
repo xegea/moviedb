@@ -13,7 +13,6 @@
     <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
     <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/lodash@4.17.21/lodash.min.js"></script>
-    <script src="https://unpkg.com/vue-infinite-scroll@2.0.2/vue-infinite-scroll.js"></script>
     
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRDL11ZXRK"></script>
@@ -42,7 +41,7 @@
       </header>
 
       <main>
-        <section class="section-grid">
+        <section id="section-grid" class="section-grid">
           <div class="row">
             <div v-for="(content, index) in contentList.slice(0,4)" :key="content.Title" class="col-1-of-4">
               <div class="feature-box">
@@ -68,11 +67,16 @@
                 </p>   -->
               </div>
             </div>
-          </div>         
+          </div>
+          <div class="row">
+            <div class="col-1-of-4">&nbsp;<a v-if="page > 1" href="#section-grid" class="btn-text" @click="back">&larr; Previous</a></div>
+            <div class="col-1-of-4">&nbsp;</div>
+            <div class="col-1-of-4">&nbsp;</div>
+            <div class="col-1-of-4">&nbsp;<a v-if="this.lastPage == false" href="#section-grid" class="btn-text" @click="next">Next &rarr;</a></div>
+          </div>          
         </section>
         <section class="section-features">
-            
-          
+                    
         </section>
       </main>
 

@@ -50,14 +50,19 @@ func SearchHandler(srv server.Server) http.HandlerFunc {
 			return
 		}
 
-		var movieList []Movie
-		if err := json.Unmarshal([]byte(b), &movieList); err != nil {
+		type PagedMovieList struct {
+			MovieList []Movie
+			LastPage  bool
+		}
+		var pagedMovieList PagedMovieList
+
+		if err := json.Unmarshal([]byte(b), &pagedMovieList); err != nil {
 			log.Printf("Failed to Unmarshall %s", b)
 			srv.JSON(w, http.StatusInternalServerError, "failed to unmarshall")
 			return
 		}
 
-		srv.JSON(w, http.StatusOK, movieList)
+		srv.JSON(w, http.StatusOK, pagedMovieList)
 	}
 }
 

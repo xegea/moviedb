@@ -4,21 +4,33 @@ new Vue({
         search : "",
         totalres : 0,
         contentList: [],
-        limit: 10,
-        busy: false
+        lastPage: true,
+        page: 1
     },
     methods: {
-        async loadMore() {
+        async next() {
             try {
-                if (this.search.length < 2 || this.totalres < 10) return;
-                console.log("Adding 10 more data results");
-                this.busy = true;
-                const res = await axios.get("/search/?q=" + this.search + "&p=" + (1 + this.contentList.length / 10) + "&c=es-es");
-                this.totalres = res.data?.length;
-                this.contentList = this.contentList.concat(res.data);
-                this.busy = false;
+                if (this.search.length < 2) return;
+                this.page++;
+                const res = await axios.get("/search/?q=" + this.search + "&p=" + this.page + "&c=es-es");
+                this.totalres = res.data.MovieList?.length;
+                this.contentList = res.data.MovieList;
+                this.lastPage = res.data.LastPage;
             } catch (err) {
+                this.page--;
                 console.log(err)
+            }
+        },
+        async back() {
+            try {
+                this.page--;
+                const res = await axios.get("/search/?q=" + this.search + "&p=" + this.page + "&c=es-es");
+                this.totalres = res.data.MovieList?.length;
+                this.contentList = res.data.MovieList;
+                this.lastPage = res.data.LastPage;
+            } catch (err) {
+                this.page++;
+                console.log(err);
             }
         }
     },
@@ -27,11 +39,17 @@ new Vue({
             try {
                 if (this.search.length < 2) return;
                 const res = await axios.get("/search/?q=" + this.search + "&p=1&c=es-es");
-                this.contentList = res.data;
-                this.totalres = res.data?.length;
+                if (res.data.MovieList == null) {
+                    this.contentList = [];
+                    return;
+                }
+                this.contentList = res.data.MovieList;
+                this.totalres = res.data.MovieList?.length;
+                this.lastPage = res.data.LastPage;
                 //this.getResult = res.data[0].Title;
+                this.page = 1;
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
         }, 700)
     }
