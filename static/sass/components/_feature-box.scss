@@ -1,0 +1,16 @@
+.feature-box {
+    background-color: rgba($color-white, .8);
+    font-size: 1.5rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem rgba($color-black, .05);
+
+    &__text {
+        
+    }
+
+    &__img {
+        width: 25rem;
+    }
+}

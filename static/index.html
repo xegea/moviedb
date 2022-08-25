@@ -43,52 +43,32 @@
 
       <main>
         <section class="section-grid">
-          <!-- <div class="row">
-            <div v-for="(content, index) in contentList" :key="content.Title" class="col-1-of-5">
-              {{index}}
-            </div>
-            <div v-for="(content, index) in contentList" :key="content.Title" class="col-1-of-5">
-              <span v-if="index >= 5">{{index}}</span>
-            </div>
-          </div> -->
           <div class="row">
-            <div v-for="(content, index) in contentList.slice(0,5)" :key="content.Title" class="col-1-of-5">
-              <div class="card">
-                <header class="card-header">
-                  <p class="card-header-title">
-                    {{content.Title}}
-                  </p>
-                  <div class="content">
-                    <a target="_blank" v-bind:href="content.Url"><img width="200px" v-bind:src="content.Image" /></a>
-                  </div>
-                </header>
-                <div class="card-content">
-                  <div class="content">
-                    <p>{{content.Description}}</p>
-                  </div>
+            <div v-for="(content, index) in contentList.slice(0,4)" :key="content.Title" class="col-1-of-4">
+              <div class="feature-box">
+                <div class="content">
+                  <a target="_blank" v-bind:href="content.Url"><img class="feature-box__img" v-bind:src="content.Image" /></a>
                 </div>
+                <h3 class="heading-tertiary">{{content.Title}}</h3>
+                <!-- <p class="feature-box__text">
+                  {{content.Description}}
+                </p>   -->
               </div>
             </div>
           </div>
           <div class="row">
-            <div v-for="(content, index) in contentList.slice(5,10)" :key="content.Title" class="col-1-of-5">
-              <div class="card">
-                <header class="card-header">
-                  <p class="card-header-title">
-                    {{content.Title}}                    
-                  </p>
-                  <div class="content">
-                    <a target="_blank" v-bind:href="content.Url"><img width="200px" v-bind:src="content.Image" /></a>
-                  </div>
-                </header>
-                <div class="card-content">
-                  <div class="content">
-                    <p>{{content.Description}}</p>
-                  </div>                  
+            <div v-for="(content, index) in contentList.slice(4,8)" :key="content.Title" class="col-1-of-4">
+              <div class="feature-box">
+                <div class="content">
+                  <a target="_blank" v-bind:href="content.Url"><img class="feature-box__img" v-bind:src="content.Image" /></a>
                 </div>
+                <h3 class="heading-tertiary">{{content.Title}}</h3>
+                <!-- <p class="feature-box__text">
+                  {{content.Description}}
+                </p>   -->
               </div>
             </div>
-          </div>
+          </div>         
         </section>
         <section class="section-features">
             
@@ -161,29 +141,6 @@
           <div class="col-3-of-4">
             Col 3 of 4
           </div>           
-        </div>
-      </section> -->
-
-
-      <!-- <section class="section">
-        <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
-          <div v-for="content in contentList" :key="content.Title" style="margin-bottom: 2rem;" data-aos="slide-up" data-aos-offset="100" data-aos-easing="ease-out-back">
-            <div class="card">
-              <header class="card-header">
-                <p class="card-header-title">
-                  {{content.Title}}
-                </p>
-              </header>
-              <div class="card-content">
-                <div class="content">
-                  <p>{{content.Description}}</p>
-                </div>
-                <div class="content">
-                  <a target="_blank" v-bind:href="content.Url"><img width="450px" v-bind:src="content.Image" /></a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section> -->
     </div>
