@@ -90,7 +90,8 @@ body {
   padding: 1rem;
   text-align: center;
   border-radius: 3px;
-  box-shadow: 0 1.5rem rgba(0, 0, 0, 0.05); }
+  box-shadow: 0 1.5rem rgba(0, 0, 0, 0.05);
+  height: 22rem; }
   .feature-box__img {
     width: 25rem; }
 

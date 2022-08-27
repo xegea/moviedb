@@ -45,9 +45,7 @@
           <div class="row">
             <div v-for="(content, index) in contentList.slice(0,4)" :key="content.Title" class="col-1-of-4">
               <div class="feature-box">
-                <div class="content">
-                  <a target="_blank" v-bind:href="content.Url"><img class="feature-box__img" v-bind:src="content.Image" /></a>
-                </div>
+                <a target="_blank" v-bind:href="content.Url"><img class="feature-box__img" v-bind:src="content.Image" /></a>
                 <h3 class="heading-tertiary">{{content.Title}}</h3>
                 <!-- <p class="feature-box__text">
                   {{content.Description}}
@@ -58,11 +56,9 @@
           <div class="row">
             <div v-for="(content, index) in contentList.slice(4,8)" :key="content.Title" class="col-1-of-4">
               <div class="feature-box">
-                <div class="content">
-                  <a target="_blank" v-bind:href="content.Url"><img class="feature-box__img" v-bind:src="content.Image" /></a>
-                </div>
+                <a target="_blank" v-bind:href="content.Url"><img class="feature-box__img" v-bind:src="content.Image" /></a>
                 <h3 class="heading-tertiary">{{content.Title}}</h3>
-                <!-- <p class="feature-box__text">
+              <!-- <p class="feature-box__text">
                   {{content.Description}}
                 </p>   -->
               </div>
