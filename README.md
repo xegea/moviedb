@@ -1,3 +1,3 @@
 # moviedb.io
 
-https://moviedb-io.herokuapp.com/
+Streaming Platforms Searcher for Movies and TV Shows (https://moviedb-io.herokuapp.com)
